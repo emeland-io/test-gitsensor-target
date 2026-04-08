@@ -1,0 +1,43 @@
+# Multi-document EmELand landscape: one ContextType and several Contexts.
+# Serve/watch: go run ./cmd/modelsrv server --data-dir ./data
+---
+version: emeland.io/v1
+kind: ContextType
+spec:
+  contextTypeId: "11111111-1111-1111-1111-111111111111"
+  displayName: "Business domain"
+  description: "Contexts grouped by business or product domain"
+---
+version: emeland.io/v1
+kind: Context
+spec:
+  contextId: "aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa"
+  displayName: "Enterprise root"
+  description: "Top-level landscape partition"
+  type: "11111111-1111-1111-1111-111111111111"
+---
+version: emeland.io/v1
+kind: Context
+spec:
+  contextId: "bbbbbbbb-bbbb-bbbb-bbbb-bbbbbbbbbbbb"
+  displayName: "Billing"
+  description: "Revenue and invoicing systems"
+  parent: "aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa"
+  type: "11111111-1111-1111-1111-111111111111"
+---
+version: emeland.io/v1
+kind: Context
+spec:
+  contextId: "cccccccc-cccc-cccc-cccc-cccccccccccc"
+  displayName: "Platform"
+  description: "Shared platform and infrastructure"
+  parent: "aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa"
+  type: "11111111-1111-1111-1111-111111111111"
+---
+version: emeland.io/v1
+kind: Context
+spec:
+  contextId: "dddddddd-dddd-dddd-dddd-dddddddddddd"
+  displayName: "Staging"
+  description: "Non-production integration slice (no parent)"
+  type: "11111111-1111-1111-1111-111111111111"
