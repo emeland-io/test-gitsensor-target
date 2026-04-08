@@ -1,0 +1,85 @@
+# Phase 1: structure types (System, API, Component + instances).
+# Serve: go run ./cmd/modelsrv server --data-dir ./data
+---
+version: emeland.io/v1
+kind: System
+spec:
+  systemId: "e1000001-0000-4000-8000-000000000001"
+  displayName: "Order platform"
+  description: "Logical system grouping order APIs and services"
+  abstract: false
+  version:
+    version: "2.1.0"
+  annotations:
+    owner: platform-team
+    tier: "1"
+---
+version: emeland.io/v1
+kind: API
+spec:
+  apiId: "e1000001-0000-4000-8000-000000000002"
+  displayName: "Orders REST API"
+  description: "Public order lifecycle API"
+  type: "OpenAPI"
+  systemId: "e1000001-0000-4000-8000-000000000001"
+  version:
+    version: "1.4.0"
+  annotations:
+    protocol: https
+---
+version: emeland.io/v1
+kind: API
+spec:
+  apiId: "e1000001-0000-4000-8000-000000000003"
+  displayName: "Inventory gRPC API"
+  type: "AsyncAPI"
+  systemId: "e1000001-0000-4000-8000-000000000001"
+  annotations:
+    style: grpc
+---
+version: emeland.io/v1
+kind: Component
+spec:
+  componentId: "e1000001-0000-4000-8000-000000000004"
+  displayName: "Order service"
+  description: "Implements order workflows; calls inventory"
+  systemId: "e1000001-0000-4000-8000-000000000001"
+  consumes:
+    - "e1000001-0000-4000-8000-000000000003"
+  provides:
+    - "e1000001-0000-4000-8000-000000000002"
+  annotations:
+    language: go
+---
+version: emeland.io/v1
+kind: SystemInstance
+spec:
+  systemInstanceId: "e1000001-0000-4000-8000-000000000011"
+  displayName: "Order platform (prod EU)"
+  systemId: "e1000001-0000-4000-8000-000000000001"
+  annotations:
+    region: eu-west-1
+---
+version: emeland.io/v1
+kind: ApiInstance
+spec:
+  apiInstanceId: "e1000001-0000-4000-8000-000000000012"
+  displayName: "Orders REST (prod EU)"
+  apiId: "e1000001-0000-4000-8000-000000000002"
+  systemInstanceId: "e1000001-0000-4000-8000-000000000011"
+---
+version: emeland.io/v1
+kind: ApiInstance
+spec:
+  apiInstanceId: "e1000001-0000-4000-8000-000000000013"
+  displayName: "Inventory gRPC (prod EU)"
+  apiId: "e1000001-0000-4000-8000-000000000003"
+  systemInstanceId: "e1000001-0000-4000-8000-000000000011"
+---
+version: emeland.io/v1
+kind: ComponentInstance
+spec:
+  componentInstanceId: "e1000001-0000-4000-8000-000000000014"
+  displayName: "Order service (prod EU)"
+  componentId: "e1000001-0000-4000-8000-000000000004"
+  systemInstanceId: "e1000001-0000-4000-8000-000000000011"
