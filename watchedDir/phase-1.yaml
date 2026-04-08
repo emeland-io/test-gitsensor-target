@@ -32,7 +32,7 @@ kind: API
 spec:
   apiId: "e1000001-0000-4000-8000-000000000003"
   displayName: "Inventory gRPC API"
-  type: "AsyncAPI"
+  type: "GraphQL"
   systemId: "e1000001-0000-4000-8000-000000000001"
   annotations:
     style: grpc
