@@ -1,0 +1,42 @@
+# clean-phase0.yaml
+# All types are declared before the resources that reference them.
+# A phase-0 filter should raise zero findings.
+---
+version: emeland.io/v1
+kind: NodeType
+spec:
+  nodeTypeId: "bbbb0002-0000-4000-8000-000000000001"
+  displayName: "git-sensor"
+  description: "Sensor that reads landscape resources from a remote Git repository"
+---
+version: emeland.io/v1
+kind: ContextType
+spec:
+  contextTypeId: "dddd0002-0000-4000-8000-000000000001"
+  displayName: "Environment"
+  description: "Deployment environment slice"
+---
+version: emeland.io/v1
+kind: Node
+spec:
+  nodeId: "aaaa0002-0000-4000-8000-000000000001"
+  displayName: "prod-git-sensor"
+  nodeTypeId: "bbbb0002-0000-4000-8000-000000000001"
+  # NodeType exists above → no finding
+---
+version: emeland.io/v1
+kind: Context
+spec:
+  contextId: "cccc0003-0000-4000-8000-000000000001"
+  displayName: "Production"
+  type: "dddd0002-0000-4000-8000-000000000001"
+  # ContextType exists above → no finding
+---
+version: emeland.io/v1
+kind: Context
+spec:
+  contextId: "cccc0003-0000-4000-8000-000000000002"
+  displayName: "Staging"
+  parent: "cccc0003-0000-4000-8000-000000000001"
+  type: "dddd0002-0000-4000-8000-000000000001"
+  # ContextType exists → no finding

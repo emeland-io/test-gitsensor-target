@@ -1,0 +1,12 @@
+# broken-phase0.yaml
+# Missing: NodeType for the Node, ContextType for the Context.
+# A phase-0 filter should raise NodeTypeMissing and ContextTypeMissing.
+---
+version: emeland.io/v1
+kind: Node
+spec:
+  nodeId: "aaaa0001-0000-4000-8000-000000000001"
+  displayName: "orphan-git-sensor"
+  nodeTypeId: "bbbb0001-0000-4000-8000-000000000001"
+  # NodeType bbbb0001... does not exist in the model → NodeTypeMissing finding
+---

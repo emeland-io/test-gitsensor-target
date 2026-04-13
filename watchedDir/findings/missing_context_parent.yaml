@@ -1,0 +1,35 @@
+---
+version: emeland.io/v1
+kind: ContextType
+spec:
+  contextTypeId: "7fbc930a-4874-4b52-9598-6481977e203c"
+  displayName: "Environment"
+  description: "Deployment environment slice (prod, staging, dev)"
+---
+version: emeland.io/v1
+kind: ContextType
+spec:
+  contextTypeId: "d34e29b1-7a5b-4e92-bc11-9ec07672ec1d"
+  displayName: "Business domain"
+  description: "High-level business or product domain grouping"
+---
+# version: emeland.io/v1
+# kind: Context
+# spec:
+#   contextId: "a157790b-33ce-4ca8-9844-32386da44b6c"
+#   displayName: "Production"
+#   description: "Primary production landscape slice"
+#   type: "7fbc930a-4874-4b52-9598-6481977e203c"
+#   annotations:
+#     env: prod
+---
+version: emeland.io/v1
+kind: Context
+spec:
+  contextId: "c82b137d-5e63-471a-8260-032a920be38e"
+  displayName: "Staging"
+  description: "Pre-production validation slice"
+  type: "7fbc930a-4874-4b52-9598-6481977e203c"
+  parent: "a157790b-33ce-4ca8-9844-32386da44b6c" # Referenced from the commented Production block
+  annotations:
+    env: staging

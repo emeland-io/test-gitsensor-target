@@ -1,0 +1,14 @@
+version: emeland.io/v1
+kind: Context
+spec:
+  contextId: "cccc0001-0000-4000-8000-000000000001"
+  displayName: "Production (broken)"
+  type: "dddd0001-0000-4000-8000-000000000001"
+  # ContextType dddd0001... does not exist in the model → ContextTypeMissing finding
+---
+version: emeland.io/v1
+kind: Context
+spec:
+  contextId: "cccc0002-0000-4000-8000-000000000002"
+  displayName: "Staging (no type set)"
+  # No type field at all → ContextTypeNotSet finding

@@ -1,0 +1,81 @@
+# Phase 0: Contexts + Nodes (EmELand building block processes)
+# Watch with: go run ./cmd/modelsrv server --data-dir ./data
+---
+version: emeland.io/v1
+kind: ContextType
+spec:
+  contextTypeId: "11111111-0000-4000-8000-000000000001"
+  displayName: "Environment"
+  description: "Deployment environment slice (prod, staging, dev)"
+---
+version: emeland.io/v1
+kind: ContextType
+spec:
+  contextTypeId: "11111111-0000-4000-8000-000000000002"
+  displayName: "Business domain"
+  description: "High-level business or product domain grouping"
+---
+version: emeland.io/v1
+kind: Context
+spec:
+  contextId: "22222222-0000-4000-8000-000000000001"
+  displayName: "Production"
+  description: "Primary production landscape slice"
+  type: "11111111-0000-4000-8000-000000000001"
+  annotations:
+    env: prod
+---
+version: emeland.io/v1
+kind: Context
+spec:
+  contextId: "22222222-0000-4000-8000-000000000002"
+  displayName: "Staging"
+  description: "Pre-production validation slice"
+  type: "11111111-0000-4000-8000-000000000001"
+  parent: "22222222-0000-4000-8000-000000000001"
+  annotations:
+    env: staging
+---
+version: emeland.io/v1
+kind: Context
+spec:
+  contextId: "22222222-0000-4000-8000-000000000003"
+  displayName: "Order management"
+  description: "Systems and services owned by the order management domain"
+  type: "11111111-0000-4000-8000-000000000002"
+---
+version: emeland.io/v1
+kind: NodeType
+spec:
+  nodeTypeId: "33333333-0000-4000-8000-000000000001"
+  displayName: "file-sensor"
+  description: "Sensor that reads landscape YAML definitions from the filesystem"
+---
+version: emeland.io/v1
+kind: NodeType
+spec:
+  nodeTypeId: "33333333-0000-4000-8000-000000000002"
+  displayName: "k8s-sensor"
+  description: "Sensor that collects resources from a Kubernetes cluster"
+---
+version: emeland.io/v1
+kind: Node
+spec:
+  nodeId: "44444444-0000-4000-8000-000000000001"
+  displayName: "local-filesensor"
+  description: "The file-sensor process watching the local data directory"
+  nodeTypeId: "33333333-0000-4000-8000-000000000001"
+  annotations:
+    host: localhost
+    dataDir: ./data
+---
+version: emeland.io/v1
+kind: Node
+spec:
+  nodeId: "44444444-0000-4000-8000-000000000002"
+  displayName: "prod-k8s-sensor"
+  description: "K8s sensor watching the production EU cluster"
+  nodeTypeId: "33333333-0000-4000-8000-000000000002"
+  annotations:
+    cluster: prod-eu-west-1
+    region: eu-west-1
