@@ -13,15 +13,15 @@ spec:
   displayName: "Business domain"
   description: "High-level business or product domain grouping"
 ---
-# version: emeland.io/v1
-# kind: Context
-# spec:
-#   contextId: "a157790b-33ce-4ca8-9844-32386da44b6c"
-#   displayName: "Production"
-#   description: "Primary production landscape slice"
-#   type: "7fbc930a-4874-4b52-9598-6481977e203c"
-#   annotations:
-#     env: prod
+version: emeland.io/v1
+kind: Context
+spec:
+  contextId: "a157790b-33ce-4ca8-9844-32386da44b6c"
+  displayName: "Production"
+  description: "Primary production landscape slice"
+  type: "7fbc930a-4874-4b52-9598-6481977e203c"
+  annotations:
+    env: prod
 ---
 version: emeland.io/v1
 kind: Context
