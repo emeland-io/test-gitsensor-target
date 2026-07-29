@@ -1,0 +1,213 @@
+# ContextTypes and Contexts converted from emeland-ui src/mocks/contexts.ts.
+# Types are declared before the Contexts that reference them
+# Context "Altsystem" points at a parent that is not modelled -> ContextParentNotFound
+
+---
+version: emeland.io/v1
+kind: ContextType
+spec:
+  contextTypeId: "1a2b3c4d-0001-4211-8000-000000000001"
+  displayName: "Organization"
+  description: "The top-level organization."
+  annotations:
+    "emeland.io/organization": "root"
+
+---
+version: emeland.io/v1
+kind: ContextType
+spec:
+  contextTypeId: "d34e29b1-7a5b-4e92-bc11-9ec07672ec1d"
+  displayName: "Business domain"
+  description: "A business area grouping systems and teams."
+
+---
+version: emeland.io/v1
+kind: ContextType
+spec:
+  contextTypeId: "7fbc930a-4874-4b52-9598-6481977e203c"
+  displayName: "Environment"
+  description: "A deployment environment (prod, staging, dev), mapped to a private cloud tenant."
+
+---
+version: emeland.io/v1
+kind: ContextType
+spec:
+  contextTypeId: "1a2b3c4d-0002-4211-8000-000000000002"
+  displayName: "Region"
+  description: "A data centre site within an environment (Berlin, Strausberg), geo-redundant."
+
+---
+version: emeland.io/v1
+kind: ContextType
+spec:
+  contextTypeId: "1a2b3c4d-0003-4211-8000-000000000003"
+  displayName: "Tenant"
+  description: "An isolated business unit within a business domain."
+
+---
+version: emeland.io/v1
+kind: Context
+spec:
+  contextId: "0a000000-0000-4211-8000-000000000001"
+  displayName: "BWI GmbH"
+  description: "Root context of BWI."
+  type: "1a2b3c4d-0001-4211-8000-000000000001"
+  annotations:
+    "eximpl.emeland.io/org-id": "bwi"
+    "eximpl.emeland.io/legal-entity": "BWI GmbH"
+    "eximpl.emeland.io/registered-office": "Berlin"
+    "eximpl.emeland.io/public-owner": "Bund"
+    "eximpl.emeland.io/data-protection": "GDPR"
+
+---
+version: emeland.io/v1
+kind: Context
+spec:
+  contextId: "0a000000-0000-4211-8000-000000000002"
+  displayName: "Operations Platform"
+  description: "Runs the shared infrastructure, CI/CD and the Bundeswehr private cloud."
+  type: "d34e29b1-7a5b-4e92-bc11-9ec07672ec1d"
+  parent: "0a000000-0000-4211-8000-000000000001"
+  annotations:
+    "eximpl.emeland.io/owner": "team-ops"
+    "eximpl.emeland.io/cost-center": "KST-1001"
+    "eximpl.emeland.io/classification": "offen"
+
+---
+version: emeland.io/v1
+kind: Context
+spec:
+  contextId: "0a000000-0000-4211-8000-000000000003"
+  displayName: "Data Management"
+  description: "Runs the data lake, streaming and analytics platform."
+  type: "d34e29b1-7a5b-4e92-bc11-9ec07672ec1d"
+  parent: "0a000000-0000-4211-8000-000000000001"
+  annotations:
+    "eximpl.emeland.io/owner": "team-data"
+    "eximpl.emeland.io/cost-center": "KST-1002"
+    "eximpl.emeland.io/classification": "offen"
+
+---
+version: emeland.io/v1
+kind: Context
+spec:
+  contextId: "d4f6a8b1-3579-4c2d-8e4f-5a6b7c8d9e1f"
+  displayName: "Identity Management"
+  description: "Business domain for identity and access management."
+  type: "d34e29b1-7a5b-4e92-bc11-9ec07672ec1d"
+  parent: "0a000000-0000-4211-8000-000000000001"
+  annotations:
+    "eximpl.emeland.io/owner": "team-iam"
+    "eximpl.emeland.io/cost-center": "KST-2002"
+    "eximpl.emeland.io/compliance": "BSI"
+
+---
+version: emeland.io/v1
+kind: Context
+spec:
+  contextId: "a157790b-33ce-4ca8-9844-32386da44b6c"
+  displayName: "Production"
+  description: "Primary production environment on the Bundeswehr private cloud."
+  type: "7fbc930a-4874-4b52-9598-6481977e203c"
+  parent: "0a000000-0000-4211-8000-000000000002"
+  annotations:
+    "eximpl.emeland.io/tier": "prod"
+    "eximpl.emeland.io/cloud": "pcloud-bw"
+    "eximpl.emeland.io/network-zone": "bw-netz"
+    "eximpl.emeland.io/classification": "VS-NfD"
+    "eximpl.emeland.io/sla": "99.9"
+    "eximpl.emeland.io/compliance": "BSI"
+
+---
+version: emeland.io/v1
+kind: Context
+spec:
+  contextId: "0a000000-0000-4211-8000-000000000004"
+  displayName: "Berlin"
+  description: "Berlin data centre (ber), primary production site."
+  type: "1a2b3c4d-0002-4211-8000-000000000002"
+  parent: "a157790b-33ce-4ca8-9844-32386da44b6c"
+  annotations:
+    "eximpl.emeland.io/site": "ber"
+    "eximpl.emeland.io/data-center": "RZ-BER-1"
+    "eximpl.emeland.io/city": "Berlin"
+    "eximpl.emeland.io/data-residency": "DE"
+    "eximpl.emeland.io/geo-redundancy": "primary"
+
+---
+version: emeland.io/v1
+kind: Context
+spec:
+  contextId: "0a000000-0000-4211-8000-000000000005"
+  displayName: "Strausberg"
+  description: "Strausberg data centre (srb), geo-redundant secondary site."
+  type: "1a2b3c4d-0002-4211-8000-000000000002"
+  parent: "a157790b-33ce-4ca8-9844-32386da44b6c"
+  annotations:
+    "eximpl.emeland.io/site": "srb"
+    "eximpl.emeland.io/data-center": "RZ-SRB-2"
+    "eximpl.emeland.io/city": "Strausberg"
+    "eximpl.emeland.io/data-residency": "DE"
+    "eximpl.emeland.io/geo-redundancy": "secondary"
+
+---
+version: emeland.io/v1
+kind: Context
+spec:
+  contextId: "c82b137d-5e63-471a-8260-032a920be38e"
+  displayName: "Staging"
+  description: "Pre-production environment, mirrors the production topology."
+  type: "7fbc930a-4874-4b52-9598-6481977e203c"
+  parent: "a157790b-33ce-4ca8-9844-32386da44b6c"
+  annotations:
+    "eximpl.emeland.io/tier": "staging"
+    "eximpl.emeland.io/cloud": "pcloud-bw"
+    "eximpl.emeland.io/tenant": "bw-staging"
+    "eximpl.emeland.io/site": "srb"
+    "eximpl.emeland.io/deploy-strategy": "rolling"
+
+---
+version: emeland.io/v1
+kind: Context
+spec:
+  contextId: "b2d4f6a8-1357-4a9b-8c2d-3e4f5a6b7c8d"
+  displayName: "Development"
+  description: "Shared development and integration environment."
+  type: "7fbc930a-4874-4b52-9598-6481977e203c"
+  parent: "c82b137d-5e63-471a-8260-032a920be38e"
+  annotations:
+    "eximpl.emeland.io/tier": "dev"
+    "eximpl.emeland.io/cloud": "pcloud-bw"
+    "eximpl.emeland.io/tenant": "bw-dev"
+    "eximpl.emeland.io/site": "ber"
+
+---
+version: emeland.io/v1
+kind: Context
+spec:
+  contextId: "0a000000-0000-4211-8000-000000000006"
+  displayName: "Analytics Sandbox"
+  description: "Isolated sandbox for data analysis experiments."
+  type: "7fbc930a-4874-4b52-9598-6481977e203c"
+  parent: "0a000000-0000-4211-8000-000000000003"
+  annotations:
+    "eximpl.emeland.io/tier": "sandbox"
+    "eximpl.emeland.io/cloud": "pcloud-bw"
+    "eximpl.emeland.io/tenant": "bw-analyse"
+    "eximpl.emeland.io/classification": "offen"
+    "eximpl.emeland.io/budget-cap-eur": "4000"
+
+---
+version: emeland.io/v1
+kind: Context
+spec:
+  contextId: "0a000000-0000-4211-8000-000000000008"
+  displayName: "Legacy Platform"
+  description: "Legacy infrastructure being phased out; its parent context is not modelled yet."
+  type: "7fbc930a-4874-4b52-9598-6481977e203c"
+  parent: "ffffffff-0000-4211-8000-0000000000ff"
+  annotations:
+    "eximpl.emeland.io/tier": "legacy"
+    "eximpl.emeland.io/operating-model": "legacy-contract"
+    "eximpl.emeland.io/site": "RZ Berlin"
+    "eximpl.emeland.io/planned-shutdown": "2027-Q2"

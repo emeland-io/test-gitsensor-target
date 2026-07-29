@@ -1,0 +1,250 @@
+# Components and ComponentInstances converted from emeland-ui src/mocks/components.ts
+# consumes/provides reference API UUIDs from 03_apis.yaml
+
+---
+version: emeland.io/v1
+kind: Component
+spec:
+  componentId: "ca1b2c3d-4e5f-4a6b-8c9d-1e2f3a4b5c6d"
+  displayName: "App Frontend"
+  description: "Web frontend served via Nginx. Calls Command and Query APIs."
+  systemId: "7a1b2c3d-4e5f-4a6b-8c9d-1e2f3a4b5c6d"
+  version:
+    version: "1.8.3"
+    availableFrom: "2026-04-01T00:00:00Z"
+  consumes:
+    - "aa1b2c3d-4e5f-4a6b-8c9d-1e2f3a4b5c6d"
+    - "ab2c3d4e-5f6a-4b7c-9d1e-2f3a4b5c6d7e"
+  annotations:
+    "emeland.io/owner": "platform-team"
+    "emeland.io/runtime": "nginx"
+
+---
+version: emeland.io/v1
+kind: Component
+spec:
+  componentId: "cb2c3d4e-5f6a-4b7c-9d1e-2f3a4b5c6d7e"
+  displayName: "App Backend"
+  description: "Core business logic. Provides Command/Query APIs, produces events, consumes database."
+  systemId: "7a1b2c3d-4e5f-4a6b-8c9d-1e2f3a4b5c6d"
+  version:
+    version: "1.8.3"
+    availableFrom: "2026-04-01T00:00:00Z"
+  consumes:
+    - "bc9d1e2f-3a4b-4c5d-6e7f-8a9b1c2d3e4f"
+    - "bb8c9d1e-2f3a-4b4c-5d6e-7f8a9b1c2d3e"
+  provides:
+    - "aa1b2c3d-4e5f-4a6b-8c9d-1e2f3a4b5c6d"
+    - "ab2c3d4e-5f6a-4b7c-9d1e-2f3a4b5c6d7e"
+    - "ac3d4e5f-6a7b-4c8d-1e2f-3a4b5c6d7e8f"
+    - "af6a7b8c-9d1e-4f2a-3b4c-5d6e7f8a9b1c"
+  annotations:
+    "emeland.io/owner": "platform-team"
+    "emeland.io/runtime": "go"
+
+---
+version: emeland.io/v1
+kind: Component
+spec:
+  componentId: "cc3d4e5f-6a7b-4c8d-1e2f-3a4b5c6d7e8f"
+  displayName: "Kong Gateway"
+  description: "API gateway proxy. Routes public traffic with rate limiting and JWT auth."
+  systemId: "8b2c3d4e-5f6a-4b7c-9d1e-2f3a4b5c6d7e"
+  version:
+    version: "3.6.1"
+    availableFrom: "2026-03-15T00:00:00Z"
+  consumes:
+    - "aa1b2c3d-4e5f-4a6b-8c9d-1e2f3a4b5c6d"
+    - "ab2c3d4e-5f6a-4b7c-9d1e-2f3a4b5c6d7e"
+  provides:
+    - "ad4e5f6a-7b8c-4d9e-1f2a-3b4c5d6e7f8a"
+    - "af6a7b8c-9d1e-4f2a-3b4c-5d6e7f8a9b1c"
+  annotations:
+    "emeland.io/owner": "infra-team"
+    "emeland.io/runtime": "nginx/openresty"
+
+---
+version: emeland.io/v1
+kind: Component
+spec:
+  componentId: "cd4e5f6a-7b8c-4d9e-1f2a-3b4c5d6e7f8a"
+  displayName: "Grafana Server"
+  description: "Dashboard and alerting server. Queries Prometheus via PromQL."
+  systemId: "9c3d4e5f-6a7b-4c8d-1e2f-3a4b5c6d7e8f"
+  version:
+    version: "11.1.0"
+    availableFrom: "2026-02-20T00:00:00Z"
+  consumes:
+    - "ae5f6a7b-8c9d-4e1f-2a3b-4c5d6e7f8a9b"
+  provides:
+    - "ba7b8c9d-1e2f-4a3b-4c5d-6e7f8a9b1c2d"
+    - "af6a7b8c-9d1e-4f2a-3b4c-5d6e7f8a9b1c"
+  annotations:
+    "emeland.io/owner": "obs-team"
+    "emeland.io/runtime": "go"
+
+---
+version: emeland.io/v1
+kind: Component
+spec:
+  componentId: "ce5f6a7b-8c9d-4e1f-2a3b-4c5d6e7f8a9b"
+  displayName: "Prometheus Server"
+  description: "Time-series database. Scrapes metrics targets and serves PromQL queries."
+  systemId: "a4d5e6f7-8b9c-4d1e-2f3a-4b5c6d7e8f9a"
+  version:
+    version: "2.53.0"
+    availableFrom: "2026-03-01T00:00:00Z"
+  consumes:
+    - "af6a7b8c-9d1e-4f2a-3b4c-5d6e7f8a9b1c"
+  provides:
+    - "ae5f6a7b-8c9d-4e1f-2a3b-4c5d6e7f8a9b"
+  annotations:
+    "emeland.io/owner": "obs-team"
+    "emeland.io/runtime": "go"
+
+---
+version: emeland.io/v1
+kind: Component
+spec:
+  componentId: "cf6a7b8c-9d1e-4f2a-3b4c-5d6e7f8a9b1c"
+  displayName: "Prometheus Operator"
+  description: "Kubernetes operator managing Prometheus instances and ServiceMonitor CRDs."
+  systemId: "b5e6f7a8-9c1d-4e2f-3a4b-5c6d7e8f9a1b"
+  version:
+    version: "0.75.0"
+    availableFrom: "2026-03-01T00:00:00Z"
+  provides:
+    - "af6a7b8c-9d1e-4f2a-3b4c-5d6e7f8a9b1c"
+  annotations:
+    "emeland.io/owner": "obs-team"
+    "emeland.io/runtime": "go"
+
+---
+version: emeland.io/v1
+kind: ComponentInstance
+spec:
+  componentInstanceId: "d1a1b2c3-0000-4d5e-8f00-000000000001"
+  displayName: "App Frontend (prod-eu)"
+  componentId: "ca1b2c3d-4e5f-4a6b-8c9d-1e2f3a4b5c6d"
+  systemInstanceId: "e8b9c1d2-3f4a-4b5c-6d7e-8f9a1b2c3d4e"
+  annotations:
+    "eximpl.emeland.io/last-update": "2026-05-28T09:24:11Z"
+    "emeland.io/cluster": "ber-prod"
+    "emeland.io/namespace": "app"
+
+---
+version: emeland.io/v1
+kind: ComponentInstance
+spec:
+  componentInstanceId: "d2a1b2c3-0000-4d5e-8f00-000000000002"
+  displayName: "App Frontend (staging)"
+  componentId: "ca1b2c3d-4e5f-4a6b-8c9d-1e2f3a4b5c6d"
+  systemInstanceId: "e8b9c1d2-0000-4b5c-8d7e-8f9a1b2c3d02"
+  annotations:
+    "eximpl.emeland.io/last-update": "2026-05-28T09:20:44Z"
+    "emeland.io/cluster": "ber-staging"
+    "emeland.io/namespace": "app"
+
+---
+version: emeland.io/v1
+kind: ComponentInstance
+spec:
+  componentInstanceId: "d3a1b2c3-0000-4d5e-8f00-000000000003"
+  displayName: "App Backend (prod-eu)"
+  componentId: "cb2c3d4e-5f6a-4b7c-9d1e-2f3a4b5c6d7e"
+  systemInstanceId: "e8b9c1d2-3f4a-4b5c-6d7e-8f9a1b2c3d4e"
+  annotations:
+    "eximpl.emeland.io/last-update": "2026-05-28T09:24:11Z"
+    "emeland.io/cluster": "ber-prod"
+    "emeland.io/namespace": "app"
+
+---
+version: emeland.io/v1
+kind: ComponentInstance
+spec:
+  componentInstanceId: "d4a1b2c3-0000-4d5e-8f00-000000000004"
+  displayName: "App Backend (staging)"
+  componentId: "cb2c3d4e-5f6a-4b7c-9d1e-2f3a4b5c6d7e"
+  systemInstanceId: "e8b9c1d2-0000-4b5c-8d7e-8f9a1b2c3d02"
+  annotations:
+    "eximpl.emeland.io/last-update": "2026-05-28T09:20:44Z"
+    "emeland.io/cluster": "ber-staging"
+    "emeland.io/namespace": "app"
+
+---
+version: emeland.io/v1
+kind: ComponentInstance
+spec:
+  componentInstanceId: "d5a1b2c3-0000-4d5e-8f00-000000000005"
+  displayName: "Kong Gateway (prod-eu)"
+  componentId: "cc3d4e5f-6a7b-4c8d-1e2f-3a4b5c6d7e8f"
+  systemInstanceId: "f9c1d2e3-4a5b-4c6d-7e8f-9a1b2c3d4e5f"
+  annotations:
+    "eximpl.emeland.io/last-update": "2026-05-28T09:24:08Z"
+    "emeland.io/cluster": "ber-prod"
+    "emeland.io/namespace": "kong"
+
+---
+version: emeland.io/v1
+kind: ComponentInstance
+spec:
+  componentInstanceId: "d6a1b2c3-0000-4d5e-8f00-000000000006"
+  displayName: "Kong Gateway (staging)"
+  componentId: "cc3d4e5f-6a7b-4c8d-1e2f-3a4b5c6d7e8f"
+  systemInstanceId: "f9c1d2e3-0000-4c6d-8e8f-9a1b2c3d4e02"
+  annotations:
+    "eximpl.emeland.io/last-update": "2026-05-28T09:21:02Z"
+    "emeland.io/cluster": "ber-staging"
+    "emeland.io/namespace": "kong"
+
+---
+version: emeland.io/v1
+kind: ComponentInstance
+spec:
+  componentInstanceId: "d7a1b2c3-0000-4d5e-8f00-000000000007"
+  displayName: "Grafana Server (prod)"
+  componentId: "cd4e5f6a-7b8c-4d9e-1f2a-3b4c5d6e7f8a"
+  systemInstanceId: "1a2b3c4d-5e6f-4a7b-8c9d-1e2f3a4b5c6d"
+  annotations:
+    "eximpl.emeland.io/last-update": "2026-05-28T09:23:55Z"
+    "emeland.io/cluster": "ber-prod"
+    "emeland.io/namespace": "monitoring"
+
+---
+version: emeland.io/v1
+kind: ComponentInstance
+spec:
+  componentInstanceId: "d8a1b2c3-0000-4d5e-8f00-000000000008"
+  displayName: "Grafana Server (staging)"
+  componentId: "cd4e5f6a-7b8c-4d9e-1f2a-3b4c5d6e7f8a"
+  systemInstanceId: "1a2b3c4d-0000-4a8c-8d1e-2f3a4b5c6d02"
+  annotations:
+    "eximpl.emeland.io/last-update": "2026-05-28T09:22:19Z"
+    "emeland.io/cluster": "ber-staging"
+    "emeland.io/namespace": "monitoring"
+
+---
+version: emeland.io/v1
+kind: ComponentInstance
+spec:
+  componentInstanceId: "d9a1b2c3-0000-4d5e-8f00-000000000009"
+  displayName: "Prometheus Server (prod)"
+  componentId: "ce5f6a7b-8c9d-4e1f-2a3b-4c5d6e7f8a9b"
+  systemInstanceId: "2b3c4d5e-6f7a-4b8c-9d1e-2f3a4b5c6d7e"
+  annotations:
+    "eximpl.emeland.io/last-update": "2026-05-28T09:24:01Z"
+    "emeland.io/cluster": "ber-prod"
+    "emeland.io/namespace": "monitoring"
+
+---
+version: emeland.io/v1
+kind: ComponentInstance
+spec:
+  componentInstanceId: "d0a1b2c3-0000-4d5e-8f00-00000000000a"
+  displayName: "Prometheus Operator (prod)"
+  componentId: "cf6a7b8c-9d1e-4f2a-3b4c-5d6e7f8a9b1c"
+  systemInstanceId: "3c4d5e6f-7a8b-4c9d-1e2f-3a4b5c6d7e8f"
+  annotations:
+    "eximpl.emeland.io/last-update": "2026-05-28T09:24:03Z"
+    "emeland.io/cluster": "ber-prod"
+    "emeland.io/namespace": "monitoring"
