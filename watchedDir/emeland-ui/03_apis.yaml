@@ -135,4 +135,3 @@ spec:
     version: "16.2.0"
   annotations:
     "emeland.io/protocol": "postgres"
-    
